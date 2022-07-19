@@ -27,13 +27,12 @@ async def auto_end_stream(client, message):
         return await message.reply_text(usage)
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
-    if state == "enable":
+    if state == "يُمكَِن":
         await autoend_on()
         await message.reply_text(
-            "Auto End Stream Enabled.\n\nBot will leave voice chat automatically after 3 mins if no one is listening with a warning message.."
-        )
-    elif state == "disable":
+           "تم تمكين الإنهاء التلقائي للبث. \ and \ not سيترك الدردشة الصوتية تلقائيًا بعد 3 دقائق إذا لم يستمع أحد برسالة تحذير ..")
+    elif state == "تعطيل":
         await autoend_off()
-        await message.reply_text("Auto End Stream Disabled.")
+        await message.reply_text("تم إيقاف التشغيل التلقائي للبث.")
     else:
         await message.reply_text(usage)
