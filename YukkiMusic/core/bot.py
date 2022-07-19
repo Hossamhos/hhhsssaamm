@@ -37,7 +37,7 @@ class YukkiBot(Client):
             )
         except:
             LOGGER(__name__).error(
-                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
+               "فشل برنامج الروبوت في الوصول إلى مجموعة السجلات. تأكد من إضافة الروبوت الخاص بك إلى قناة السجل الخاصة بك وترقيتك كمسؤول!"
             )
             sys.exit()
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
