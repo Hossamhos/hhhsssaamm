@@ -80,7 +80,7 @@ async def settings_cb(client, CallbackQuery, _):
 
 
 @app.on_callback_query(
-    filters.regex("settingsback_helper") & ~BANNED_USERS
+    filters.regex("الإعدادات") & ~BANNED_USERS
 )
 @languageCB
 async def settings_back_markup(
@@ -90,7 +90,7 @@ async def settings_back_markup(
         await CallbackQuery.answer()
     except:
         pass
-    if CallbackQuery.message.chat.type == "private":
+    if CallbackQuery.message.chat.type == "خاص":
         try:
             await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
@@ -98,7 +98,7 @@ async def settings_back_markup(
             OWNER = None
         buttons = private_panel(_, app.username, OWNER)
         return await CallbackQuery.edit_message_text(
-            _["start_2"].format(MUSIC_BOT_NAME),
+            _["بدء_2"].format(MUSIC_BOT_NAME),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
@@ -110,21 +110,21 @@ async def settings_back_markup(
 
 ## Audio and Video Quality
 async def gen_buttons_aud(_, aud):
-    if aud == "High":
+    if aud == "عالٍ":
         buttons = audio_quality_markup(_, high=True)
-    elif aud == "Medium":
+    elif aud == "متوسط":
         buttons = audio_quality_markup(_, medium=True)
-    elif aud == "Low":
+    elif aud == "قليل":
         buttons = audio_quality_markup(_, low=True)
     return buttons
 
 
 async def gen_buttons_vid(_, aud):
-    if aud == "High":
+    if aud == "عالٍ":
         buttons = video_quality_markup(_, high=True)
-    elif aud == "Medium":
+    elif aud == "متوسط":
         buttons = video_quality_markup(_, medium=True)
-    elif aud == "Low":
+    elif aud == "قليل":
         buttons = video_quality_markup(_, low=True)
     return buttons
 
@@ -141,53 +141,53 @@ async def gen_buttons_vid(_, aud):
 @languageCB
 async def without_Admin_rights(client, CallbackQuery, _):
     command = CallbackQuery.matches[0].group(1)
-    if command == "SEARCHANSWER":
+    if command == "البحث":
         try:
             return await CallbackQuery.answer(
-                _["setting_3"], show_alert=True
+                _["الإعداد_3"], show_alert=True
             )
         except:
             return
     if command == "PLAYMODEANSWER":
         try:
             return await CallbackQuery.answer(
-                _["setting_10"], show_alert=True
+                _["الإعداد_10"], show_alert=True
             )
         except:
             return
     if command == "PLAYTYPEANSWER":
         try:
             return await CallbackQuery.answer(
-                _["setting_11"], show_alert=True
+                _["الإعداد_11"], show_alert=True
             )
         except:
             return
-    if command == "AUTHANSWER":
+    if command == "مؤلف":
         try:
             return await CallbackQuery.answer(
-                _["setting_4"], show_alert=True
+                _["الإعداد_4"], show_alert=True
             )
         except:
             return
-    if command == "CMANSWER":
+    if command == "كومانسوير":
         try:
             return await CallbackQuery.answer(
-                _["setting_9"].format(CLEANMODE_DELETE_MINS),
+                _["الإعداد_9"].format(CLEANMODE_DELETE_MINS),
                 show_alert=True,
             )
         except:
             return
-    if command == "COMMANDANSWER":
+    if command == "القائد":
         try:
             return await CallbackQuery.answer(
-                _["setting_14"], show_alert=True
+                _["ضبط_14"], show_alert=True
             )
         except:
             return
-    if command == "SUGGANSWER":
+    if command == "نقرا":
         try:
             return await CallbackQuery.answer(
-                _["setting_16"], show_alert=True
+                _["ضبط_16"], show_alert=True
             )
         except:
             return
@@ -240,7 +240,7 @@ async def without_Admin_rights(client, CallbackQuery, _):
         else:
             Group = None
         playty = await get_playtype(CallbackQuery.message.chat.id)
-        if playty == "Everyone":
+        if playty == "الجميع":
             Playtype = None
         else:
             Playtype = True
