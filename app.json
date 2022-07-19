@@ -1,30 +1,30 @@
 {
-    "الاسم": "Yukki Music Bot" ،
-     "description": "برنامج Telegram Group Calls المتدفق مع بعض الميزات المفيدة ، مكتوب بلغة Python مع Pyrogram و Py-Tgcalls. دعم منصات مثل Youtube و Spotify و Resso و AppleMusic و Soundcloud و M3u8 Links."،
-     "الشعار": "https://telegra.ph/file/c0e014ff34f34d1056627.png" ،
-     "الكلمات الدالة": [
-     "python3"،
-     "برقية"،
-     "بوت"،
-     "يوكي" ،
-     "YukkiMusicBot" ،
-     "telegram-bot"،
-     "بيروجرام"
-     ] ،
-     "المكدس": "الحاوية"،
-     "البيئة": {
-       "API_ID": {
-         "الوصف": "احصل على هذه القيمة من https://my.telegram.org" ،
-         "القيمة": ""،
+    "name": "Yukki Music Bot",
+    "description": "Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
+    "logo": "https://telegra.ph/file/c0e014ff34f34d1056627.png",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "Yukki",
+    "YukkiMusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "stack": "container",
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
         "required": true
       },
-     "API_HASH": {
-         "الوصف": "احصل على هذه القيمة من https://my.telegram.org" ،
-         "القيمة": ""،
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
         "required": true
       },
-    "AUTO_LEAVING_ASSISTANT": {
-         "description": "إذا كنت تريد أن يغادر مساعدك جميع الدردشات تلقائيًا بعد مرور بعض الوقت."،
+      "AUTO_LEAVING_ASSISTANT": {
+        "description": "If you want your assistant to leave all chats automatically after some time.",
         "value": "True",
         "required": false
       },
