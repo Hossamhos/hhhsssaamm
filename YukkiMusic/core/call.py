@@ -295,15 +295,15 @@ class Call(PyTgCalls):
                 )
             except Exception as e:
                 raise AssistantErr(
-                 "** لم يتم العثور على محادثة صوتية نشطة ** \ n \ n الرجاء التأكد من تمكين الدردشة الصوتية للمجموعة. إذا تم تمكينها بالفعل ، يرجى إنهاؤها وبدء محادثة صوتية جديدة مرة أخرى وإذا استمرت المشكلة ، فحاول / أعد تشغيل"
+                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
                 )
         except AlreadyJoinedError:
             raise AssistantErr(
-                "** المساعد موجود بالفعل في الدردشة الصوتية ** \ n \ n اكتشفت الأنظمة أن المساعد موجود بالفعل في الدردشة الصوتية ، تظهر هذه المشكلة بشكل عام عند تشغيل استعلامين معًا. \ n \ n إذا لم يكن المساعد موجودًا في الدردشة الصوتية ، فيرجى  قم بإنهاء الدردشة الصوتية وابدأ محادثة صوتية جديدة مرة أخرى وإذا استمرت المشكلة ، فحاول / أعد تشغيل "
+                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
-                "** خطأ Telegram Sever ** \ n \ n يواجه Telegram بعض المشكلات الداخلية في الخادم ، يرجى محاولة اللعب مرة أخرى. \ n \ n إذا استمرت هذه المشكلة في الظهور في كل مرة ، يرجى إنهاء الدردشة الصوتية وبدء محادثة صوتية جديدة مرة أخرى."
+                "**Telegram Server Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
             )
         await add_active_chat(chat_id)
         await mute_off(chat_id)
@@ -378,7 +378,7 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 img = await gen_thumb(videoid)
-                button = telegram_markup(_)
+                button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
                     photo=img,
@@ -427,7 +427,7 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 img = await gen_thumb(videoid)
-                button = stream_markup(_, videoid)
+                button = stream_markup(_, videoid, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
                     original_chat_id,
@@ -459,7 +459,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                button = telegram_markup(_)
+                button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
                     photo=config.STREAM_IMG_URL,
@@ -488,7 +488,7 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 if videoid == "telegram":
-                    button = telegram_markup(_)
+                    button = telegram_markup(_, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
                         photo=config.TELEGRAM_AUDIO_URL
@@ -502,7 +502,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 elif videoid == "soundcloud":
-                    button = telegram_markup(_)
+                    button = telegram_markup(_, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
@@ -515,7 +515,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["markup"] = "tg"
                 else:
                     img = await gen_thumb(videoid)
-                    button = stream_markup(_, videoid)
+                    button = stream_markup(_, videoid, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
                         photo=img,
