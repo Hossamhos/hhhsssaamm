@@ -97,17 +97,17 @@ async def ping_com(client, message: Message, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️Duration:** Unknown Duration Stream\n\nClick on button below to get whole queued list."
+        "** ⌛️Duration: ** Unknown Duration Stream \ n \ n انقر فوق الزر أدناه للحصول على قائمة انتظار كاملة."
         if DUR == "Unknown"
         else "\nClick on button below to get whole queued list."
     )
     cap = f"""**{config.MUSIC_BOT_NAME} Player**
 
-🎥**Playing:** {title}
+🎥 ** اللعب: ** {title}
 
-🔗**Stream Type:** {typo}
-🙍‍♂️**Played By:** {user}
-{send}"""
+ 🔗 ** نوع البث: ** {typo}
+ 🙍‍♂️ ** تم اللعب بواسطة: ** {user}
+ {إرسال}"""
     upl = (
         queue_markup(_, DUR, "c" if cplay else "g", videoid)
         if DUR == "Unknown"
