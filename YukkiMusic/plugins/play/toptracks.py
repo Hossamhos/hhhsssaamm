@@ -55,7 +55,7 @@ async def get_topz_playlists(client, CallbackQuery, _):
     )
 
 
-@app.on_callback_query(filters.regex("SERVERTOP") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("سيرفيرتوب") & ~BANNED_USERS)
 @languageCB
 async def server_to_play(client, CallbackQuery, _):
     chat_id = CallbackQuery.message.chat.id
@@ -67,27 +67,27 @@ async def server_to_play(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     what = callback_data.split(None, 1)[1]
     mystic = await CallbackQuery.edit_message_text(
-        _["tracks_1"].format(
+        _["المسارات_1"].format(
             what,
             CallbackQuery.from_user.first_name,
         )
     )
     upl = failed_top_markup(_)
-    if what == "Global":
+    if what == "عالمي":
         stats = await get_global_tops()
-    elif what == "Group":
+    elif what == "مجموعة":
         stats = await get_particulars(chat_id)
-    elif what == "Personal":
+    elif what == "شخصي":
         stats = await get_userss(CallbackQuery.from_user.id)
     if not stats:
         return await mystic.edit(
-            _["tracks_2"].format(what), reply_markup=upl
+            _["المسارات_2"].format(what), reply_markup=upl
         )
 
     def get_stats():
         results = {}
         for i in stats:
-            top_list = stats[i]["spot"]
+            top_list = stats[i]["بقعة"]
             results[str(i)] = top_list
             list_arranged = dict(
                 sorted(
@@ -98,12 +98,12 @@ async def server_to_play(client, CallbackQuery, _):
             )
         if not results:
             return mystic.edit(
-                _["tracks_2"].format(what), reply_markup=upl
+                _["المسارات_2"].format(what), reply_markup=upl
             )
         details = []
         limit = 0
         for vidid, count in list_arranged.items():
-            if vidid == "telegram":
+            if vidid == "برقية":
                 continue
             if limit == 10:
                 break
@@ -111,7 +111,7 @@ async def server_to_play(client, CallbackQuery, _):
             details.append(vidid)
         if not details:
             return mystic.edit(
-                _["tracks_2"].format(what), reply_markup=upl
+                _["المسارات_2"].format(what), reply_markup=upl
             )
         return details
 
@@ -130,14 +130,14 @@ async def server_to_play(client, CallbackQuery, _):
             user_name,
             CallbackQuery.message.chat.id,
             video=False,
-            streamtype="playlist",
+            streamtype="قائمة التشغيل",
         )
     except Exception as e:
         ex_type = type(e).__name__
         err = (
             e
-            if ex_type == "AssistantErr"
-            else _["general_3"].format(ex_type)
+            if ex_type == "مساعد"
+            else _["عام_3"].format(ex_type)
         )
         return await mystic.edit_text(err)
     return await mystic.delete()
