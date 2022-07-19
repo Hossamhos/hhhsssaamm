@@ -66,7 +66,7 @@ async def init():
         )
     except NoActiveGroupCall:
         LOGGER("YukkiMusic").error(
-            "[ERROR] - \n\nPlease turn on your Logger Group's Voice Call. Make sure you never close/end voice call in your log group"
+           "[ERROR] - \ n \ n الرجاء تشغيل المكالمة الصوتية لمجموعة Logger Group. تأكد من عدم إغلاق / إنهاء المكالمة الصوتية في مجموعة السجل الخاصة بك مطلقًا"
         )
         sys.exit()
     except:
