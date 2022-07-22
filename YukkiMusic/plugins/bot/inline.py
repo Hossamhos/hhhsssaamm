@@ -54,9 +54,9 @@ async def inline_query_handler(client, query):
                 ]
             )
             searched_text = f"""
-❇️**Title:** [{title}]({link})
+❇️ ** Title: ** [{title}] ({link})
 
-⏳ ** Duration: ** {duration} دقيقة
+ ⏳ ** Duration: ** {duration} دقيقة
  👀 ** المشاهدات: ** `{views}`
  ⏰ ** وقت النشر: ** {تم النشر}
  🎥 ** اسم القناة: ** {channel}
@@ -65,7 +65,7 @@ async def inline_query_handler(client, query):
  __قم بالرد على هذه الرسالة التي تم البحث عنها / تشغيلها لدفقها على الدردشة الصوتية .__
 
  ⚡️ ** بحث مضمّن بواسطة {MUSIC_BOT_NAME} ** "" "
-            answers.append(
+             الإجابات. إرفاق (
                 InlineQueryResultPhoto(
                     photo_url=thumbnail,
                     title=title,
